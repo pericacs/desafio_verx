@@ -10,44 +10,35 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 
-class FinanceScraper:
+class FinanceCrawler:
     def __init__(self):
-        # Configurações do navegador Firefox
         firefox_options = Options()
         firefox_options.add_argument('--ignore-certificate-errors')
         firefox_options.add_argument('--ignore-ssl-errors')
 
-        # Inicializando o navegador
         self.driver = webdriver.Firefox(options=firefox_options)
         self.wait = WebDriverWait(self.driver, 20)
 
-        # Acessar a URL
         base_url = "https://finance.yahoo.com/screener/new"
         self.driver.get(base_url)
 
-        # Esperar pelo botão 'Region' e clicar
         region_button = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//span[text()='Region']"))
         )
         region_button.click()
         print("Botão 'Region' clicado.")
         
-        # Esperar pelo botão 'Add Region' e clicar
         add_region_button = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, '//*[@id="screener-criteria"]/div[2]/div[1]/div[1]/div[1]/div/div[2]/ul/li[2]/button'))
         )
         add_region_button.click()
         print("Botão 'Add Region' clicado.")
-        
-        # Esperar que a lista de países apareça
         time.sleep(3)
 
-        # Desmarcar 'United States' antes de solicitar o país ao usuário
         self.deselect_united_states()
 
     def deselect_united_states(self):
         try:
-            # Desmarcar 'United States' (posição 54)
             us_checkbox = self.wait.until(
                 EC.element_to_be_clickable((By.XPATH, '//*[@id="dropdown-menu"]/div/div[2]/ul/li[54]/label'))
             )
@@ -57,22 +48,18 @@ class FinanceScraper:
             print(f"Erro ao desmarcar 'United States': {e}")
 
     def select_country(self, country_xpath):
-        try:
-            # Selecionar o país baseado no XPath passado
+        try:            
             country_checkbox = self.wait.until(
                 EC.element_to_be_clickable((By.XPATH, country_xpath))
             )
             country_checkbox.click()
-            print("País selecionado.")
+            print("País selecionado.")            
             
-            # Esperar pelo botão de "Find Stocks" e clicar
             find_stocks_button = self.wait.until(
                 EC.element_to_be_clickable((By.XPATH, '//*[@id="screener-criteria"]/div[2]/div[1]/div[3]/button[1]'))
             )
             find_stocks_button.click()
-            print("Botão 'Find Stocks' clicado para realizar a pesquisa.")
-            
-            # Esperar até que os resultados da pesquisa sejam exibidos
+            print("Botão 'Find Stocks' clicado para realizar a pesquisa.")          
             time.sleep(5)
 
         except Exception as e:
@@ -89,7 +76,6 @@ class FinanceScraper:
         
         soup = BeautifulSoup(html, 'html.parser')
         
-        # Buscar as linhas da tabela com os dados
         rows = soup.find_all('tr', class_="simpTblRow")
         data = []
         for row in rows:
@@ -107,15 +93,10 @@ class FinanceScraper:
             print("Nenhum dado foi extraído.")
             return
 
-        # Criar a pasta output se não existir
         output_folder = "output"
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
-        
-        # Especificando o formato correto com aspas e separador por vírgula
         output_csv = os.path.join(output_folder, f"{region.lower().replace(' ', '_')}.csv")
-        
-        # Salvando em CSV com aspas e delimitador correto
         df = pd.DataFrame(data)
         df.to_csv(output_csv, index=False, quotechar='"', quoting=1, sep=',')
         print(f"Dados salvos em {output_csv}")
@@ -129,9 +110,7 @@ class FinanceScraper:
 
 
 if __name__ == "__main__":
-    scraper = FinanceScraper()
-
-    # Opções de países e seus respectivos XPaths
+    scraper = FinanceCrawler()
     countries = {
         1: ('Argentina', '//*[@id="dropdown-menu"]/div/div[2]/ul/li[1]/label'),
         2: ('Austria', '//*[@id="dropdown-menu"]/div/div[2]/ul/li[2]/label'),
@@ -192,15 +171,12 @@ if __name__ == "__main__":
         57: ('South Africa', '//*[@id="dropdown-menu"]/div/div[2]/ul/li[57]/label'),
     }
 
-    # Apresentar opções ao usuário
     print("Escolha um país para consulta:")
     for key, value in countries.items():
         print(f"{key} - {value[0]}")
 
-    # Receber a escolha do usuário
     choice = int(input("Digite o número do país escolhido: "))
 
-    # Selecionar o país e realizar a pesquisa
     if choice in countries:
         scraper.select_country(countries[choice][1])
         scraper.scrape(countries[choice][0])

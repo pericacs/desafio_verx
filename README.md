@@ -29,22 +29,21 @@ O desafio consiste em criar um crawler em Python que:
 
 ## Arquivos principais
 
-`finance_scraper.py`: Contém a classe `FinanceCrawler`, responsável pela lógica de extração dos dados utilizando Selenium e BeautifulSoup.
-`utils.py`: Funções utilitárias, como formatação dos dados e escrita no arquivo CSV.
-`test_crawler.py`: Implementação de testes unitários para validar o funcionamento do crawler.
+`finance_crawler.py`: Contém a classe `FinanceCrawler`, responsável pela lógica de extração dos dados utilizando Selenium e BeautifulSoup.
+`test_finance_crawler.py`: Implementação de testes unitários para validar o funcionamento do crawler.
 
 ## Instalação e Configuração
 
 ### Pré-requisitos
-Certifique-se de ter o Python 3.8+ instalado em sua máquina e o navegador Google Chrome (ou outro navegador compatível) instalado.
+Certifique-se de ter o Python 3.8+ instalado em sua máquina e o navegador Firefox Mozilla instalado.
 
 ### Passos para Instalação
 
 **1. Clonar o repositório:**
 
 ```
-git clone https://github.com/seu-usuario/crawler-financeiro.git
-cd crawler-financeiro
+git clone https://github.com/pericacs/desafio_verx.git
+cd desafio_verx
 ```
 
 **2. Criar um ambiente virtual (opcional, mas recomendado):**
@@ -58,15 +57,16 @@ venv\Scripts\activate  # Para Windows
 ```
 pip install -r requirements.txt
 ```
-**4. Configurar o WebDriver**: Baixe a versão correta do ChromeDriver para o seu navegador e coloque-o no PATH ou configure diretamente no código. Consulte a documentação do Selenium para detalhes: Selenium WebDriver.
+**4. Configurar o WebDriver**: Baixe a versão correta do geckodriver para o seu navegador mozilla e coloque-o no PATH ou configure diretamente no código. Consulte a documentação do Selenium para detalhes: Selenium WebDriver.
 
 ### Executando o Crawler
 Para executar o crawler e obter os dados de uma região específica, use o seguinte comando:
 
 ```
-python finance_scraper.py
+python finance_crawler.py
 ```
-Isso gerará um arquivo CSV com os resultados da busca na pasta do projeto.
+Como possuem alguns paises para escolher, o robo vai perguntar qual o pais a sua escolha as opções dos paises são numericas, 
+exemplo: Se quer consultar por Argentina, digitar "1" então o filtro é preenchido com o pais e a consulta realizada, buscando as informações para a geração do arquivo CSV com os resultados da busca na pasta "output" do projeto.
 
 ### Exemplo de Execução
 Ao buscar pelos dados da região "Argentina", o arquivo CSV gerado terá o seguinte conteúdo:
@@ -77,5 +77,9 @@ Ao buscar pelos dados da região "Argentina", o arquivo CSV gerado terá o segui
 "NOKA.BA","Nokia Corporation","557.50"
 ```
 ## Testes Unitários
+
 Para garantir a qualidade do código, foram implementados testes unitários utilizando a biblioteca pytest. Para rodar os testes, basta executar o seguinte comando:
 
+```
+pytest tests/test_finance_crawler.py
+```
