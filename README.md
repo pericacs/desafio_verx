@@ -18,7 +18,7 @@ O desafio consiste em criar um crawler em Python que:
    "AMX.BA","América Móvil, S.A.B. de C.V.","2089.00"
    "NOKA.BA","Nokia Corporation","557.50"
 
-Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Python 3.8+**: Linguagem de programação principal.
 - **Selenium**: Para automação do navegador e captura de dados dinâmicos.
@@ -27,45 +27,47 @@ Tecnologias Utilizadas
 - **pytest**: Implementação de testes unitários (diferencial).
 
 
-Arquivos principais
+## Arquivos principais
 
 `finance_scraper.py`: Contém a classe `FinanceCrawler`, responsável pela lógica de extração dos dados utilizando Selenium e BeautifulSoup.
 `utils.py`: Funções utilitárias, como formatação dos dados e escrita no arquivo CSV.
 `test_crawler.py`: Implementação de testes unitários para validar o funcionamento do crawler.
 
-Instalação e Configuração
+## Instalação e Configuração
 
-Pré-requisitos
+### Pré-requisitos
 Certifique-se de ter o Python 3.8+ instalado em sua máquina e o navegador Google Chrome (ou outro navegador compatível) instalado.
 
-Passos para Instalação
-Clonar o repositório:
+### Passos para Instalação
+
+**1. Clonar o repositório:**
 
 ```
 git clone https://github.com/seu-usuario/crawler-financeiro.git
 cd crawler-financeiro
 
-Criar um ambiente virtual (opcional, mas recomendado):
+**2. Criar um ambiente virtual (opcional, mas recomendado):**
 
 ```
 python -m venv venv
 venv\Scripts\activate  # Para Windows
 
-Instalar as dependências: As dependências do projeto estão listadas no arquivo requirements.txt. Para instalá-las, execute:
+**3. Instalar as dependências**: As dependências do projeto estão listadas no arquivo requirements.txt. Para instalá-las, execute:
 
 ```
 pip install -r requirements.txt
 
-Configurar o WebDriver: Baixe a versão correta do ChromeDriver para o seu navegador e coloque-o no PATH ou configure diretamente no código. Consulte a documentação do Selenium para detalhes: Selenium WebDriver.
+**4. Configurar o WebDriver**: Baixe a versão correta do ChromeDriver para o seu navegador e coloque-o no PATH ou configure diretamente no código. Consulte a documentação do Selenium para detalhes: Selenium WebDriver.
 
-Executando o Crawler
+### Executando o Crawler
 Para executar o crawler e obter os dados de uma região específica, use o seguinte comando:
 
 ```
 python finance_scraper.py
+
 Isso gerará um arquivo CSV com os resultados da busca na pasta do projeto.
 
-Exemplo de Execução
+### Exemplo de Execução
 Ao buscar pelos dados da região "Argentina", o arquivo CSV gerado terá o seguinte conteúdo:
 
 ```
@@ -73,6 +75,6 @@ Ao buscar pelos dados da região "Argentina", o arquivo CSV gerado terá o segui
 "AMX.BA","América Móvil, S.A.B. de C.V.","2089.00"
 "NOKA.BA","Nokia Corporation","557.50"
 
-Testes Unitários
+## Testes Unitários
 Para garantir a qualidade do código, foram implementados testes unitários utilizando a biblioteca pytest. Para rodar os testes, basta executar o seguinte comando:
 
