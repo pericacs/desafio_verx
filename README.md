@@ -45,18 +45,19 @@ Certifique-se de ter o Python 3.8+ instalado em sua máquina e o navegador Googl
 ```
 git clone https://github.com/seu-usuario/crawler-financeiro.git
 cd crawler-financeiro
+```
 
 **2. Criar um ambiente virtual (opcional, mas recomendado):**
 
 ```
 python -m venv venv
 venv\Scripts\activate  # Para Windows
-
+```
 **3. Instalar as dependências**: As dependências do projeto estão listadas no arquivo requirements.txt. Para instalá-las, execute:
 
 ```
 pip install -r requirements.txt
-
+```
 **4. Configurar o WebDriver**: Baixe a versão correta do ChromeDriver para o seu navegador e coloque-o no PATH ou configure diretamente no código. Consulte a documentação do Selenium para detalhes: Selenium WebDriver.
 
 ### Executando o Crawler
@@ -64,7 +65,7 @@ Para executar o crawler e obter os dados de uma região específica, use o segui
 
 ```
 python finance_scraper.py
-
+```
 Isso gerará um arquivo CSV com os resultados da busca na pasta do projeto.
 
 ### Exemplo de Execução
@@ -74,7 +75,7 @@ Ao buscar pelos dados da região "Argentina", o arquivo CSV gerado terá o segui
 "symbol","name","price"
 "AMX.BA","América Móvil, S.A.B. de C.V.","2089.00"
 "NOKA.BA","Nokia Corporation","557.50"
-
+```
 ## Testes Unitários
 Para garantir a qualidade do código, foram implementados testes unitários utilizando a biblioteca pytest. Para rodar os testes, basta executar o seguinte comando:
 
