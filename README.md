@@ -19,31 +19,19 @@ O desafio consiste em criar um crawler em Python que:
    "NOKA.BA","Nokia Corporation","557.50"
 
 Tecnologias Utilizadas
-Python 3.8+: Linguagem de programação principal.
-Selenium: Para automação do navegador e captura de dados dinâmicos.
-BeautifulSoup: Para análise e extração dos dados HTML.
-Orientação a Objetos (OOP): Para estruturação e organização do código.
-pytest: Implementação de testes unitários (diferencial).
 
-Estrutura do Projeto
-
-├── crawler_financeiro/
-│   ├── __init__.py
-│   ├── crawler.py         # Classe principal do crawler
-│   ├── utils.py           # Funções auxiliares
-│   └── tests/
-│       ├── __init__.py
-│       └── test_crawler.py  # Testes unitários usando pytest
-├── requirements.txt       # Dependências do projeto
-├── README.md              # Documentação do projeto
-└── run.py                 # Script principal para rodar o crawler
+- **Python 3.8+**: Linguagem de programação principal.
+- **Selenium**: Para automação do navegador e captura de dados dinâmicos.
+- **BeautifulSoup**: Para análise e extração dos dados HTML.
+- **Orientação a Objetos (OOP)**: Para estruturação e organização do código.
+- **pytest**: Implementação de testes unitários (diferencial).
 
 
 Arquivos principais
 
-crawler.py: Contém a classe FinanceCrawler, responsável pela lógica de extração dos dados utilizando Selenium e BeautifulSoup.
-utils.py: Funções utilitárias, como formatação dos dados e escrita no arquivo CSV.
-test_crawler.py: Implementação de testes unitários para validar o funcionamento do crawler.
+`finance_scraper.py`: Contém a classe `FinanceCrawler`, responsável pela lógica de extração dos dados utilizando Selenium e BeautifulSoup.
+`utils.py`: Funções utilitárias, como formatação dos dados e escrita no arquivo CSV.
+`test_crawler.py`: Implementação de testes unitários para validar o funcionamento do crawler.
 
 Instalação e Configuração
 
@@ -53,17 +41,19 @@ Certifique-se de ter o Python 3.8+ instalado em sua máquina e o navegador Googl
 Passos para Instalação
 Clonar o repositório:
 
+```
 git clone https://github.com/seu-usuario/crawler-financeiro.git
 cd crawler-financeiro
 
 Criar um ambiente virtual (opcional, mas recomendado):
 
+```
 python -m venv venv
-source venv/bin/activate  # Para Linux/MacOS
 venv\Scripts\activate  # Para Windows
 
 Instalar as dependências: As dependências do projeto estão listadas no arquivo requirements.txt. Para instalá-las, execute:
 
+```
 pip install -r requirements.txt
 
 Configurar o WebDriver: Baixe a versão correta do ChromeDriver para o seu navegador e coloque-o no PATH ou configure diretamente no código. Consulte a documentação do Selenium para detalhes: Selenium WebDriver.
@@ -71,12 +61,14 @@ Configurar o WebDriver: Baixe a versão correta do ChromeDriver para o seu naveg
 Executando o Crawler
 Para executar o crawler e obter os dados de uma região específica, use o seguinte comando:
 
-python run.py --region "Argentina"
+```
+python finance_scraper.py
 Isso gerará um arquivo CSV com os resultados da busca na pasta do projeto.
 
 Exemplo de Execução
 Ao buscar pelos dados da região "Argentina", o arquivo CSV gerado terá o seguinte conteúdo:
 
+```
 "symbol","name","price"
 "AMX.BA","América Móvil, S.A.B. de C.V.","2089.00"
 "NOKA.BA","Nokia Corporation","557.50"
